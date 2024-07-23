@@ -91,7 +91,7 @@ function calculateTaxOld(income) {
 
 app.get("/:income", (req, res) => {
   const total = parseInt(req.params.income);
-  const pf = 3800 * 12;
+  const pf = 3400 * 12;
   const sd_new = 75000;
   const sd_old = 50000;
 
