@@ -101,13 +101,8 @@ app.get("/:income", (req, res) => {
   const oldSalary = ((total - pf - old_tax) / 12).toFixed(2);
   const newSalary = ((total - pf - new_tax) / 12).toFixed(2);
 
-  const totalSavings = (calculateTaxOld(total) - calculateTax(total)).toFixed(
-    2
-  );
-  const savingsPerMonth = (
-    (calculateTaxOld(total) - calculateTax(total)) /
-    12
-  ).toFixed(2);
+  const totalSavings = (old_tax - new_tax).toFixed(2);
+  const savingsPerMonth = ((old_tax - new_tax) / 12).toFixed(2);
 
   const response = `
     <html>
