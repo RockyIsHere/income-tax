@@ -14,36 +14,46 @@ const CONSTANTS = {
 
 // Tax calculation functions
 function calculateTax2025(income) {
-  if (income <= 0) return 0;
-  let tax = 0;
-
-  // No tax up to 12 lakhs
-  if (income <= 1200000) {
+  if (income <= 400000) {
     return 0;
   }
 
-  // 15% for 12L-16L
+  let tax = 0;
+
+  // 5% for 4,00,001 to 8,00,000
+  if (income > 400000) {
+    const slab1 = Math.min(income - 400000, 400000);
+    tax += slab1 * 0.05;
+  }
+
+  // 10% for 8,00,001 to 12,00,000
+  if (income > 800000) {
+    const slab2 = Math.min(income - 800000, 400000);
+    tax += slab2 * 0.1;
+  }
+
+  // 15% for 12,00,001 to 16,00,000
   if (income > 1200000) {
-    const slab1 = Math.min(income - 1200000, 400000);
-    tax += slab1 * 0.15;
+    const slab3 = Math.min(income - 1200000, 400000);
+    tax += slab3 * 0.15;
   }
 
-  // 20% for 16L-20L
+  // 20% for 16,00,001 to 20,00,000
   if (income > 1600000) {
-    const slab2 = Math.min(income - 1600000, 400000);
-    tax += slab2 * 0.2;
+    const slab4 = Math.min(income - 1600000, 400000);
+    tax += slab4 * 0.2;
   }
 
-  // 25% for 20L-24L
+  // 25% for 20,00,001 to 24,00,000
   if (income > 2000000) {
-    const slab3 = Math.min(income - 2000000, 400000);
-    tax += slab3 * 0.25;
+    const slab5 = Math.min(income - 2000000, 400000);
+    tax += slab5 * 0.25;
   }
 
-  // 30% above 24L
+  // 30% above 24,00,000
   if (income > 2400000) {
-    const slab4 = income - 2400000;
-    tax += slab4 * 0.3;
+    const slab6 = income - 2400000;
+    tax += slab6 * 0.3;
   }
 
   return Math.round(tax);
